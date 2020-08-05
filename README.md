@@ -145,7 +145,7 @@ Visit the `aws-sdk-swift` [documentation](https://swift-aws.github.io/aws-sdk-sw
 
 ## Contributing
 
-We welcome and encourage contributions from all developers. You can find out more [here](CONTRIBUTING.md).
+We welcome and encourage contributions from all developers. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for our contributing guidelines.
 
 ## License
 AWSSDKSwift is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0). See LICENSE for details.
