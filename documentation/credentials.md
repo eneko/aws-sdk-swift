@@ -60,3 +60,24 @@ The default credential provider is implemented as a selector as follows.
 .selector(.environment, .ecs, .ec2, .configfile)
 ```
 
+## STS and Cognito Identity
+
+The `CredentialProviders` protocol allows us to define credential providers external to the core library. This mean we can implement STS(Security Token Service) and Cognito Identity credential providers. STS extends `CredentialProviderFactory` with three new `CredentialProviders`: `stsAssumeRole`, `stsSAML` and `stsWebIdentity`. CognitoIdentity adds `cognitoIdentity`. For example to use `STS.AssumeRole` to acquire new credentials. You provide a request structure, credential provider to access original credentials and a region to run the STS commands in.
+```
+import STS
+
+let request = STS.AssumeRoleRequest(roleArn: "arn:aws:iam::000000000000:role/Admin", roleSessionName: "session-name")
+let client = AWSClient(credentialProvider: .stsAssumeRole(request: request, credentialProvider: .ec2, region: .euwest1))
+```
+Similarly you can setup a Cognito Identity credential provider as follows.
+```
+import CognitoIdentity
+
+let credentialProvider: CredentialProviderFactory = .cognitoIdentity(
+    identityPoolId: poolId, 
+    logins: ["appleid.apple.com": "APPLETOKEN"],
+    region: .useast1
+)
+let client = AWSClient(credentialProvider: credentialProvider)
+```
+
