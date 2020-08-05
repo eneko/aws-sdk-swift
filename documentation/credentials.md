@@ -29,7 +29,7 @@ aws_access_key_id = YOUR_AWS_ACCESS_KEY_ID
 aws_secret_access_key = YOUR_AWS_SECRET_ACCESS_KEY
 ```
 
-## Pass the Credentials to the AWSClient directly
+## Pass Credentials to AWSClient directly
 
 If you would prefer to pass the credentials to the `AWSClient` directly you can specify credentials with the `.static` credential provider as follows.
 
