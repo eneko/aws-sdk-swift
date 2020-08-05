@@ -62,7 +62,13 @@ The default credential provider is implemented as a selector as follows.
 
 ## STS and Cognito Identity
 
-The `CredentialProviders` protocol allows us to define credential providers external to the core library. This mean we can implement STS(Security Token Service) and Cognito Identity credential providers. STS extends `CredentialProviderFactory` with three new `CredentialProviders`: `stsAssumeRole`, `stsSAML` and `stsWebIdentity`. CognitoIdentity adds `cognitoIdentity`. For example to use `STS.AssumeRole` to acquire new credentials. You provide a request structure, credential provider to access original credentials and a region to run the STS commands in.
+The `CredentialProviders` protocol allows us to define credential providers external to the core library. This mean we can implement STS(Security Token Service) and Cognito Identity credential providers. 
+
+STS extends `CredentialProviderFactory` with three new `CredentialProviders`: `stsAssumeRole` for returning temporary credentials for a different role, `stsSAML` for users authenticated via a SAML authentication response and `stsWebIdentity` for users who have been authenticated in a mobile or web application with a web identity provider. See the AWS documentation on [requesting temporary security credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html).
+
+CognitoIdentity adds `cognitoIdentity` for users in a Cognito Identity Pool, these can be users in a Cognito User Pool or users who authenticate with external providers such as Facebook, Google and Apple. See the AWS documentation on [Cognito Identity Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html).
+
+For example to use `STS.AssumeRole` to acquire new credentials. You provide a request structure, credential provider to access original credentials and a region to run the STS commands in.
 ```
 import STS
 
